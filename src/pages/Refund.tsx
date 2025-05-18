@@ -1,8 +1,14 @@
+import { useState } from "react";
+
+import { CATEGORIES, CATEGORIES_KEYS } from "../utils/categories";
+
 import { Input } from "../components/Input";
 
 import { Select } from "../components/Select";
 
 export function Refund() {
+	const [category, setCategory] = useState("");
+
 	return (
 		<form
 			action=""
@@ -17,7 +23,18 @@ export function Refund() {
 				</p>
 			</header>
 			<Input required legend="Nome da Solicitação" />
-			<Select required legend="Categoria" />
+			<Select
+				required
+				legend="Categoria"
+				value={category}
+				onChange={(e) => setCategory(e.target.value)}
+			>
+				{CATEGORIES_KEYS.map((category) => (
+					<option key={category} value={category}>
+						{CATEGORIES[category].name}
+					</option>
+				))}
+			</Select>
 		</form>
 	);
 }
