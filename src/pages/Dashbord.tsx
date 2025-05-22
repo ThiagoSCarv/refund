@@ -5,12 +5,13 @@ import { Button } from "../components/Button";
 import type React from "react";
 import { useState } from "react";
 import { RefundItem } from "../components/RefundItem";
+import { formatCurrency } from "../utils/formatCurrency";
 
 const REFUND_EXAMPLE = {
 	id: "123",
 	userName: "Thiago",
 	category: "Tranporte",
-	amount: "34.50",
+	amount: formatCurrency(34.5),
 	categoryImg: CATEGORIES.transport.icon,
 };
 
