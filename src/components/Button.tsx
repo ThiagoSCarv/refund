@@ -9,7 +9,7 @@ const variants = {
 	button: {
 		base: "h-12",
 		icon: "h-12 w-12",
-		iconSmall: "h10 w-10",
+		iconSmall: "h-10 w-10",
 	},
 };
 
