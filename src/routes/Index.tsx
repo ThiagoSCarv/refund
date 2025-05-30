@@ -12,7 +12,7 @@ const isLoading = false;
 
 const session = {
 	user: {
-		role: "manager",
+		role: "",
 	},
 };
 
