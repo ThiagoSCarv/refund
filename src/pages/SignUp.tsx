@@ -57,6 +57,8 @@ export function SignUp() {
       if (error instanceof AxiosError) {
         return alert(error.response?.data.message)
       }
+
+      alert('Não foi possivel cadastrar')
     } finally {
       setIsLoading(false)
     }
