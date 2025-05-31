@@ -3,6 +3,7 @@ import { useActionState } from 'react'
 import { ZodError, z } from 'zod'
 import { Button } from '../components/Button'
 import { Input } from '../components/Input'
+import { useAuth } from '../hooks/UseAuth'
 import { api } from '../services/api'
 
 const signInSchema = z.object({
@@ -13,6 +14,9 @@ const signInSchema = z.object({
 export function SignIn() {
   const [state, formAction, isLoading] = useActionState(signIn, null)
 
+  const auth = useAuth()
+
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   async function signIn(_: any, formData: FormData) {
     try {
       const data = signInSchema.parse({
@@ -20,8 +24,8 @@ export function SignIn() {
         password: formData.get('password'),
       })
 
-			const response = await api.post("/sessions", data)
-			console.log(response.data)
+      const response = await api.post('/sessions', data)
+      auth.save(response.data)
     } catch (error) {
       console.log(error)
 
@@ -29,7 +33,7 @@ export function SignIn() {
         return { message: error.issues[0].message }
       }
 
-			if (error instanceof AxiosError) {
+      if (error instanceof AxiosError) {
         return { message: error.response?.data.message }
       }
 
@@ -43,9 +47,9 @@ export function SignIn() {
 
       <Input name="password" required legend="Senha" type="password" />
 
-			<p className='text-sm text-red-600 text-center my-4 font-medium'>
-				{state?.message}
-			</p>
+      <p className="text-sm text-red-600 text-center my-4 font-medium">
+        {state?.message}
+      </p>
 
       <Button type="submit" isLoading={isLoading}>
         Entrar

@@ -7,18 +7,12 @@ import { ManagerRoutes } from './ManagerRoutes'
 
 const isLoading = false
 
-const session = {
-  user: {
-    role: '',
-  },
-}
-
 export function Routes() {
-  const context = useAuth()
-	console.log(context.session?.user.email)
+
+  const { session } = useAuth()
 
   function Route() {
-    switch (session?.user.role) {
+    switch (session?.userWithoutPassword.role) {
       case 'employee':
         return <EmployeeRoutes />
       case 'manager':

@@ -2,10 +2,10 @@ type UserAPIRole = 'employee' | 'manager'
 
 type UserAPIResponse = {
   token: string
-  user: {
+  userWithoutPassword: {
     id: string
     name: string
     email: string
-    role: UserAPIRole
+    role: UserAPIRole | string
   }
 }
