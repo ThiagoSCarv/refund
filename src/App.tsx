@@ -1,5 +1,10 @@
-import { Routes } from "./routes/Index";
+import { AuthProvider } from './contexts/AuhContext'
+import { Routes } from './routes/Index'
 
 export function App() {
-	return <Routes />;
+  return (
+    <AuthProvider>
+      <Routes />
+    </AuthProvider>
+  )
 }

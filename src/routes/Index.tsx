@@ -1,39 +1,39 @@
-import { BrowserRouter } from "react-router";
+import { BrowserRouter } from 'react-router'
+import { Loading } from '../components/Loading'
+import { useAuth } from '../hooks/UseAuth'
+import { AuthRoutes } from './AuthRoutes'
+import { EmployeeRoutes } from './EmployeeRoutes'
+import { ManagerRoutes } from './ManagerRoutes'
 
-import { AuthRoutes } from "./AuthRoutes";
-
-import { EmployeeRoutes } from "./EmployeeRoutes";
-
-import { ManagerRoutes } from "./ManagerRoutes";
-
-import { Loading } from "../components/Loading";
-
-const isLoading = false;
+const isLoading = false
 
 const session = {
-	user: {
-		role: "",
-	},
-};
+  user: {
+    role: '',
+  },
+}
 
 export function Routes() {
-	function Route() {
-		switch (session?.user.role) {
-			case "employee":
-				return <EmployeeRoutes />;
-			case "manager":
-				return <ManagerRoutes />;
-			default:
-				return <AuthRoutes />;
-		}
-	}
+  const context = useAuth()
+	console.log(context)
 
-	if (isLoading) {
-		return <Loading />;
-	}
-	return (
-		<BrowserRouter>
-			<Route />
-		</BrowserRouter>
-	);
+  function Route() {
+    switch (session?.user.role) {
+      case 'employee':
+        return <EmployeeRoutes />
+      case 'manager':
+        return <ManagerRoutes />
+      default:
+        return <AuthRoutes />
+    }
+  }
+
+  if (isLoading) {
+    return <Loading />
+  }
+  return (
+    <BrowserRouter>
+      <Route />
+    </BrowserRouter>
+  )
 }
