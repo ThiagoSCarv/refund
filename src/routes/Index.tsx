@@ -5,11 +5,9 @@ import { AuthRoutes } from './AuthRoutes'
 import { EmployeeRoutes } from './EmployeeRoutes'
 import { ManagerRoutes } from './ManagerRoutes'
 
-const isLoading = false
-
 export function Routes() {
 
-  const { session } = useAuth()
+  const { session, isLoading } = useAuth()
 
   function Route() {
     switch (session?.userWithoutPassword.role) {
