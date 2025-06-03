@@ -152,15 +152,15 @@ export function Refund() {
         />
       </div>
 
-      {(params.id && fileURL) ? (
+      {params.id && fileURL ? (
         <a
-          href="https://app.rocketseat.com.br/"
+          href={`http://localhost:3333/uploads/${fileURL}`}
           target="_blank"
           rel="noreferrer"
           className="text-sm text-green-200 font-semibold flex items-center justify-center gap-2 my-6 hover:opacity-70 transition ease-linear"
         >
           <img src={fileSvg} alt="Ícone de Arquivo" />
-          Abrir comporbante
+          Abrir comporovante
         </a>
       ) : (
         <Upload
