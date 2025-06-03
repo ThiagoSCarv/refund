@@ -67,7 +67,7 @@ export function Dashboard() {
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     fetchRefunds()
-  }, [])
+  }, [page])
 
   return (
     <div className="bg-gray-500 rounded-xl p-10 md:min-w-[768px]">
